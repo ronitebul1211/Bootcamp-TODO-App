@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <form class="add-task">
+    <div class="task-content">
+      <!-- Input -->
+      <input class="add-task-input" type="text" id="addTaskInput" placeholder="Write your task here...">
+      <!-- Importance Level -->
+      <div class="importance-level">
+          <span class="">Importance Level:</span>
+          <input type="radio" id="importance-hight" name="importance" value="1" checked>
+          <label for="importance-hight">High</label>
+          <input type="radio" id="importance-medium" name="importance" value="2">
+          <label for="importance-medium">Medium</label>
+          <input type="radio" id="importance-low" name="importance" value="3">
+          <label for="importance-low">Low</label>
+      </div>
+    </div>
+    <button type="submit">ADD</button>
+  </form>
+
+  <div class="tasks-list"></div>
+
+    
+  </div>
+  
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
