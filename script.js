@@ -1,10 +1,16 @@
-
+/**
+ Save to local storage methods
+ # Save tasks in local variable (Array of tasks object) 
+   when add new task, update current task, remove task from local array update local storage
+ # Save data directly to local storage (No array of tasks object)
+   when add new task, update current task, remove task 
+   get local storage, parse it, update value, stringify. return to local storage.
+ */
 let tasksList = [];
 let taskIdCounter;
 
+/*********************** UI ******************************************/
 const formEl = document.querySelector('.add-task');
- 
-
 formEl.addEventListener('submit', (event) => {
   event.preventDefault(); //don't refresh the page
   //Add new task
@@ -17,7 +23,6 @@ formEl.addEventListener('submit', (event) => {
 
   addTaskToLocalStorage(taskId);
 });
-
 
 /** Handle delete click event on Task item */
 function deleteTaskHandler(currentDeleteBtnEl, taskId){
@@ -79,10 +84,14 @@ function updateTaskEl(currentTaskInputEl, updatedTaskContent){
   currentTaskInputEl.blur();
 }
 
-/*********************** Local Storage ***************************/
+/*********************** Local Storage ***********************************/
 function addTaskToLocalStorage(taskId){
+
+
   const taskJson = JSON.stringify(getTaskById(taskId));
+
   localStorage.setItem(taskId, taskJson);
+
   console.log("new local");
   localStorage.setItem("taskId", taskId.toString());
 }
@@ -94,7 +103,7 @@ function removeTaskFromLocalStorage(taskId){
   localStorage.removeItem(taskId);
 }
 
-/*********************** Data ***********************************/
+/*********************** Data **********************************************/
 /** Add new task object to tasks list */
 function addNewTaskData(task, importanceLevel, date){
   tasksList.push({
@@ -117,7 +126,6 @@ function updateTaskData(taskId, updatedTaskContent){
   const task = tasksList.find((task) => taskId === task.id);
   task.task = updatedTaskContent;
 };
-
 /** Get task object by its id */
 function getTaskById(taskId){
   return tasksList.find((task) => task.id === taskId);
@@ -127,10 +135,9 @@ function parseDate(date){
   return `${date.getDate()}-${date.getMonth() + 1}-${ date.getFullYear()}`
 }
 
-/**************************** Init ************************************ */
+/**************************** Init ********************************************************** */
 function initApp(){
   let taskId = localStorage.getItem('taskId');
-
   if(!taskId){ 
     taskIdCounter = 0;
     console.log('new Storage');
